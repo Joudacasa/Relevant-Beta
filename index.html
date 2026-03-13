@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relevant beta | Welcome</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            margin: 0; background: #050705;
+            background-image: radial-gradient(circle at 50% -20%, #1a2e1a 0%, #050705 80%);
+            font-family: 'Inter', sans-serif; height: 100vh;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .login-card {
+            background: rgba(21, 29, 21, 0.6); backdrop-filter: blur(15px);
+            border: 1px solid rgba(46, 184, 46, 0.15); border-radius: 28px;
+            padding: 48px; width: 100%; max-width: 400px; text-align: center;
+        }
+        .logo-title { font-size: 2.8rem; font-weight: 800; color: #fff; letter-spacing: -1.5px; }
+        .logo-title span { color: var(--primary); }
+        .auth-buttons { display: flex; flex-direction: column; gap: 16px; margin-top: 30px; }
+        .social-btn {
+            display: flex; align-items: center; justify-content: center; gap: 12px;
+            height: 54px; border-radius: 14px; font-weight: 600; cursor: pointer; transition: 0.2s;
+        }
+        .btn-google { background: #fff; color: #000; border: none; }
+        .btn-apple { background: #000; color: #fff; border: 1px solid rgba(255,255,255,0.2); }
+        .divider { margin: 24px 0; display: flex; align-items: center; color: #333; font-size: 0.8rem; }
+        .divider::before, .divider::after { content: ""; flex: 1; height: 1px; background: rgba(255,255,255,0.1); margin: 0 10px; }
+    </style>
+</head>
+<body>
+    <div class="login-card">
+        <div class="logo-title">Relevant Beta<span>.</span></div>
+        <p style="color: var(--text-dim);">Stay connected with what matters.</p>
+
+        <div class="auth-buttons">
+            <div class="social-btn btn-google" onclick="signInWithGoogle()">
+                <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" width="20">
+                Continue with Google
+            </div>
+            <div class="social-btn btn-apple" onclick="alert('Apple login setup required in Supabase')">
+                <i class="fa-brands fa-apple" style="font-size: 1.4rem;"></i>
+                Continue with Apple
+            </div>
+        </div>
+
+        <div class="divider">or</div>
+
+        <div class="social-btn" onclick="exploreAsGuest()" style="background: transparent; border: 1px dashed rgba(255,255,255,0.2); color: var(--text-dim);">
+            Explore as Guest
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="config.js"></script>
+    <script src="auth.js"></script>
+</body>
+</html>

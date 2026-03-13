@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Relevant beta | Settings</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body { background: #050705; font-family: 'Inter', sans-serif; color: white; }
+        .settings-card {
+            max-width: 500px;
+            margin: 60px auto;
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(15px);
+            padding: 40px;
+            border-radius: 24px;
+            border: 1px solid rgba(46, 184, 46, 0.2);
+            text-align: center;
+        }
+        .field { text-align: left; margin-bottom: 20px; }
+        label { color: #2eb82e; font-weight: 600; font-size: 0.9rem; }
+        input, textarea {
+            width: 100%; background: rgba(0,0,0,0.4); border: 1px solid #222;
+            color: white; padding: 12px; border-radius: 12px; margin-top: 8px;
+        }
+        .btn-save {
+            background: #2eb82e; color: white; border: none; width: 100%;
+            padding: 14px; border-radius: 12px; font-weight: bold; cursor: pointer;
+            transition: 0.3s; margin-top: 10px;
+        }
+        .btn-save:hover { background: #259425; transform: scale(1.02); }
+    </style>
+</head>
+<body>
+    <div class="settings-card">
+        <h2 style="margin-bottom: 30px;">Profile Settings</h2>
+        <h2>Warning: This is a beta version of Relevant by Joudacasa,The site resources and config. not is complete.</h2>
+        <div class="field">
+            <label>Display Name</label>
+            <input type="text" id="display_name" placeholder="Your name">
+        </div>
+
+        <div class="field">
+            <label>Bio</label>
+            <textarea id="bio" rows="3" placeholder="Tell us about yourself"></textarea>
+        </div>
+
+        <button class="btn-save" id="save-btn" onclick="updateProfile()">Save Changes</button>
+        
+        <p onclick="logout()" style="color: #666; cursor: pointer; margin-top: 25px; font-size: 0.8rem;">Logout</p>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="config.js"></script>
+    <script>
+        async function updateProfile() {
+            const btn = document.getElementById('save-btn');
+            btn.innerText = "Saving...";
+            
+            const { data: { user } } = await supabase.auth.getUser();
+            const { error } = await supabase.from('profiles').upsert({
+                id: user.id,
+                display_name: document.getElementById('display_name').value,
+                bio: document.getElementById('bio').value
+            });
+
+            if (error) alert("Error: " + error.message);
+            else alert("Profile updated!");
+            btn.innerText = "Save Changes";
+        }
+
+        async function logout() {
+            await supabase.auth.signOut();
+            window.location.href = 'index.html';
+        }
+    </script>
+</body>
+</html>

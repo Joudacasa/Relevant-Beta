@@ -1,0 +1,112 @@
+:root {
+    --bg-dark: #0d110d;
+    --bg-panel: #151d15;
+    --bg-input: #1f291f;
+    --primary: #2eb82e;
+    --primary-hover: #26a326;
+    --text-main: #ffffff;
+    --text-dim: #9eb19e;
+    --border: #2a3b2a;
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: 300px 600px 350px;
+    gap: 20px;
+    max-width: 1300px;
+    width: 100%;
+    padding: 20px;
+}
+
+/* Sidebar & Nav */
+.nav-menu a {
+    display: block;
+    padding: 12px;
+    color: var(--text-main);
+    text-decoration: none;
+    font-weight: 600;
+    border-radius: 8px;
+    transition: 0.2s;
+}
+
+.nav-menu a:hover {
+    background: var(--bg-panel);
+    color: var(--primary);
+}
+
+/* Main Timeline */
+.timeline {
+    background: var(--bg-panel);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    min-height: 100vh;
+}
+
+.timeline-header {
+    padding: 15px;
+    border-bottom: 1px solid var(--border);
+    font-weight: bold;
+    font-size: 1.2em;
+    background: var(--bg-panel);
+    position: sticky;
+    top: 0;
+    border-radius: 12px 12px 0 0;
+}
+
+
+.btn-relevant {
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 10px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(46, 184, 46, 0.2);
+}
+
+.btn-relevant:hover {
+    background: var(--primary-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(46, 184, 46, 0.4);
+}
+
+.btn-danger {
+    background: rgba(255, 68, 68, 0.1);
+    color: #ff4444;
+    border: 1px solid #ff4444;
+    padding: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.btn-danger:hover {
+    background: #ff4444;
+    color: white;
+}
+
+input[type="text"], textarea {
+    width: 100%;
+    background: var(--bg-input);
+    border: 1px solid var(--border);
+    color: white;
+    padding: 12px;
+    border-radius: 10px;
+    margin-top: 5px;
+    outline: none;
+}
+
+input[type="text"]:focus {
+    border-color: var(--primary);
+}
